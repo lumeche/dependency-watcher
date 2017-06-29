@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nuance.mobility.dependencywatcher.data.Artifact;
 import com.nuance.mobility.dependencywatcher.data.IArtifactFactory;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
+import com.nuance.mobility.dependencywatcher.exceptions.UpdatingDependenciesException;
 import com.nuance.mobility.dependencywatcher.service.DependencyService;
 import com.nuance.mobility.dependencywatcher.service.NotificationService;
 
@@ -28,17 +29,12 @@ public class NotificationController {
 	@Autowired
 	private NotificationService notificationService;
 
-	@Autowired
-	private IArtifactFactory artifactFactory;
-
 	@RequestMapping(value = "/notify/", method = RequestMethod.POST)
-	public String updateDependency(@RequestBody String pom) throws PomParsingException{
+	public String updateDependency(@RequestBody String pom) throws PomParsingException, UpdatingDependenciesException{
 		logger.info("POM received {}", pom);
-
-		dependencyService.updateDependencies(pom);
-
-		Artifact artifact = artifactFactory.getArtifact(pom);
-		notificationService.notifyDependenciesof(artifact);
+		
+		Artifact artifact = dependencyService.updateDependencies(pom);		
+		notificationService.notifyDependenciesOf(artifact);
 
 		return null;
 	}

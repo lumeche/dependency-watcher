@@ -20,15 +20,17 @@ public class XPathArtifactFactoryTest {
 
 	private XPathArtifactFactory testee;
 	private static String pom;
-	private static List<Artifact> depencencies;
+	private static Artifact d1;
+	private static Artifact d2;
+	
 
 	@BeforeClass
 	public static void classSetup() throws Exception {
 		ClassPathResource r = new ClassPathResource("/pomTest.xml");
 		pom=FileUtils.readFileToString(r.getFile());
-		depencencies = new ArrayList<>();
-		depencencies.add(new Artifact("org.springframework.boot", "spring-boot-starter-web", "1.0"));
-		depencencies.add(new Artifact("org.springframework", "spring-boot-starter-test", "1.1"));
+		
+		d1 = new Artifact("org.springframework.boot", "spring-boot-starter-web", "1.0");
+		d2 = new Artifact("org.springframework", "spring-boot-starter-test", "1.1");
 	}
 
 	@Before
@@ -54,7 +56,7 @@ public class XPathArtifactFactoryTest {
 		List<Artifact> dependencies = testee.getDependencies(pom);
 		//THEN
 		assertThat(dependencies.size(), equalTo(2));
-		containsInAnyOrder(dependencies, this.depencencies.toArray());
+		assertThat(dependencies, containsInAnyOrder(d1,d2));
 	}
 
 }

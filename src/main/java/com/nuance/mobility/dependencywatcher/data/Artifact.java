@@ -62,13 +62,13 @@ public class Artifact {
 		this.version = version;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((groupId == null) ? 0 : groupId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((scm == null) ? 0 : scm.hashCode());
 		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
@@ -92,11 +92,6 @@ public class Artifact {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (scm == null) {
-			if (other.scm != null)
-				return false;
-		} else if (!scm.equals(other.scm))
-			return false;
 		if (version == null) {
 			if (other.version != null)
 				return false;
@@ -105,6 +100,13 @@ public class Artifact {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("group:%s id:%s v:%s scm:%s", this.getGroupId(),this.getId(),this.getVersion(),this.getScm());
+	}
+
+	
 	
 	
 }

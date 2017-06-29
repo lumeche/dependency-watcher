@@ -7,8 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Predicate;
 
+import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Component;
 
+
+//TODO: Make sure that this class is thread safe
 @Component
 public class DependencyRepository {
 
@@ -19,20 +22,26 @@ public class DependencyRepository {
 	}
 	
 	public List<Artifact> getArtifactDependencies(Artifact artifact){
-		return new ArrayList<Artifact>(repository.get(artifact));
+		return new ArrayList<Artifact>(repository.getOrDefault(artifact, Lists.emptyList()));
 	}
 	
 	public void updateDependency(Artifact artifact,List<Artifact> dependencies){
 		repository.put(artifact, new ArrayList<Artifact>(dependencies));
 	}
 	
-	public Artifact[] getArtifactsThatDependsOn(final Artifact dependency){
+	public List<Artifact> getArtifactsThatDependsOn(final Artifact dependency){
 		
-		return (Artifact[]) repository.entrySet().parallelStream().filter(new Predicate<Map.Entry<Artifact, List<Artifact>>>() {
+		Object[] ret = repository.entrySet().parallelStream().filter(new Predicate<Map.Entry<Artifact, List<Artifact>>>() {
 			@Override
 			public boolean test(Map.Entry<Artifact, List<Artifact>> t) {
 				return t.getValue().contains(dependency);
 			}
 		}).map(e-> e.getKey()).toArray();
+		ArrayList<Artifact> dependencies = new ArrayList<Artifact>();
+		for (int i = 0; i < ret.length; i++) {
+			dependencies.add((Artifact)ret[i]);
+			
+		}
+		return dependencies;
 	}
 }

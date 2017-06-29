@@ -11,9 +11,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
+			<groupId>com.nuance.mobility</groupId>
 			<artifactId>a</artifactId>
-			<version>1.0</version>
+			<version>1</version>
 		</dependency>
 
 		

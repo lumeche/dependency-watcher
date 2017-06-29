@@ -18,7 +18,7 @@ import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 
 @Controller
 public class XPathArtifactFactory implements IArtifactFactory {
-
+//TODO: Missing test case to ensure that two artifacts are equals only if group,id and version are equal. We should ignore the scm in the is equal 
 	DocumentBuilderFactory factory;
 	DocumentBuilder builder;
 	XPathFactory xapthFactory;
@@ -57,10 +57,10 @@ public class XPathArtifactFactory implements IArtifactFactory {
 			Document doc = builder.parse(new InputSource(new StringReader(pom)));
 			double dependenciesCount = (double) xpath.compile("count(/project/dependencies/dependency)").evaluate(doc,XPathConstants.NUMBER);
 			List<Artifact> dependencies=new ArrayList<Artifact>();
-			for (int i = 0; i<dependenciesCount; i++) {
-				String groupId=xpath.compile("/project/dependencies/dependency["+i+"]").evaluate(doc);
-				String id=xpath.compile("/project/dependencies/dependency["+i+"]").evaluate(doc);
-				String version=xpath.compile("/project/dependencies/dependency["+i+"]").evaluate(doc);
+			for (int i = 1; i<=dependenciesCount; i++) {
+				String groupId=xpath.compile("/project/dependencies/dependency["+i+"]/groupId").evaluate(doc);
+				String id=xpath.compile("/project/dependencies/dependency["+i+"]/artifactId").evaluate(doc);
+				String version=xpath.compile("/project/dependencies/dependency["+i+"]/version").evaluate(doc);
 				dependencies.add(new Artifact(groupId, id, version));
 			}
 			return dependencies;	

@@ -1,13 +1,14 @@
 package com.nuance.mobility.dependencywatcher.data;
 
-import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,10 +16,13 @@ public class DependencyRepositoryTest {
 
 	private DependencyRepository testee;
 	private Artifact a;
-	private Artifact ab;
-	private Artifact ac;
-	private List<Artifact> dependenciesOfA;
-	
+	private Artifact b;
+	private Artifact c;
+	private Artifact d;
+	private Artifact e;
+	private List<Artifact> dependenciesOfC;
+	private List<Artifact> dependenciesOfE;
+	private List<Artifact> dependenciesOfD;
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,23 +33,22 @@ public class DependencyRepositoryTest {
 	public void addAndGetDependencies() {
 		// WHEN
 		prepareDependencies();
-		testee.updateDependency(a, dependenciesOfA);
+		testee.updateDependency(c, dependenciesOfC);
 		// DO
-		List<Artifact> res = testee.getArtifactDependencies(a);
+		List<Artifact> res = testee.getArtifactDependencies(c);
 		// THEN
-		assertThat(res.size(), equalTo(dependenciesOfA.size()));
-		assertThat(res.get(0), anyOf(equalTo(ac), equalTo(ab)));
-		assertThat(res.get(1), anyOf(equalTo(ac), equalTo(ab)));
+		assertThat(res.size(), equalTo(2));
+		Matchers.arrayContainingInAnyOrder(res,a,b);
 	}
 
 	@Test
 	public void addDependency() {
 		// WHEN
 		prepareDependencies();
-		testee.updateDependency(a, dependenciesOfA);
-		dependenciesOfA.add(new Artifact("another"));
+		testee.updateDependency(c, dependenciesOfC);
+		dependenciesOfC.add(new Artifact("another"));
 		// DO
-		testee.updateDependency(a, dependenciesOfA);
+		testee.updateDependency(a, dependenciesOfC);
 		List<Artifact> res = testee.getArtifactDependencies(a);
 		// THEN
 		assertThat(res.size(), equalTo(3));
@@ -55,11 +58,11 @@ public class DependencyRepositoryTest {
 	public void removeDependency() {
 		// WHEN
 		prepareDependencies();
-		testee.updateDependency(a, dependenciesOfA);
-		dependenciesOfA.remove(0);
-		testee.updateDependency(a, dependenciesOfA);
+		testee.updateDependency(c, dependenciesOfC);
+		dependenciesOfC.remove(0);
+		testee.updateDependency(c, dependenciesOfC);
 		// DO
-		List<Artifact> res = testee.getArtifactDependencies(a);
+		List<Artifact> res = testee.getArtifactDependencies(c);
 		// THEN
 		assertThat(res.size(), equalTo(1));
 	}
@@ -68,41 +71,58 @@ public class DependencyRepositoryTest {
 	public void addAndRemoveDependency() {
 		// WHEN
 		prepareDependencies();
-		testee.updateDependency(a, dependenciesOfA);
-		dependenciesOfA.remove(ac);
+		testee.updateDependency(c, dependenciesOfC);
+		dependenciesOfC.remove(a);
 		Artifact another = new Artifact("another");
-		dependenciesOfA.add(another);
+		dependenciesOfC.add(another);
 		// THEN
-		testee.updateDependency(a, dependenciesOfA);
-		List<Artifact> res = testee.getArtifactDependencies(a);
+		testee.updateDependency(c, dependenciesOfC);
+		List<Artifact> res = testee.getArtifactDependencies(c);
 		// THEN
 		assertThat(res.size(), equalTo(2));
-		assertThat(res.get(0), anyOf(equalTo(ab),equalTo(another)));
-		assertThat(res.get(1), anyOf(equalTo(ab),equalTo(another)));
+		assertThat(res,containsInAnyOrder(another,b));
+		Matchers.not(Matchers.contains(res,a));
 	}
 	
 	@Test
 	public void testCopyList(){
 		//WHEN
 		prepareDependencies();
-		testee.updateDependency(a, dependenciesOfA);
+		testee.updateDependency(c, dependenciesOfC);
 		//THEN
-		dependenciesOfA.remove(0);
-		List<Artifact> res = testee.getArtifactDependencies(a);
+		dependenciesOfC.remove(0);
+		List<Artifact> res = testee.getArtifactDependencies(c);
 		//DO
-		assertThat(dependenciesOfA.size(), equalTo(1));
-		assertThat(res.size(), equalTo(2));
-		
+		assertThat(dependenciesOfC.size(), equalTo(1));
+		assertThat(res.size(), equalTo(2));		
 	}
 	
+	@Test
+	public void whoDependsOnMe(){
+		//WHEN
+		prepareDependencies();
+		testee.updateDependency(c, dependenciesOfC);
+		testee.updateDependency(d, dependenciesOfD);
+		testee.updateDependency(e, dependenciesOfE);		
+		//THEN
+		List<Artifact> dependsOnA = testee.getArtifactsThatDependsOn(a);
+		List<Artifact> dependsOnB = testee.getArtifactsThatDependsOn(b);
+		List<Artifact> dependsOnC = testee.getArtifactsThatDependsOn(c);
+		assertThat(dependsOnA,containsInAnyOrder(c,e));
+		assertThat(dependsOnB,containsInAnyOrder(c));
+		assertThat(dependsOnC,containsInAnyOrder(d));
+	}
 	
 
 	private void prepareDependencies() {
 		a = new Artifact("a");
-		ab = new Artifact("ab");
-		ac = new Artifact("ac");
-		
-		dependenciesOfA = new ArrayList<Artifact>(Arrays.asList(ab, ac));
+		b = new Artifact("b");
+		c = new Artifact("c");
+		d = new Artifact("d");
+		e = new Artifact("e");
+		dependenciesOfC = new ArrayList<Artifact>(Arrays.asList(a, b));
+		dependenciesOfD = new ArrayList<Artifact>(Arrays.asList(c));
+		dependenciesOfE = new ArrayList<Artifact>(Arrays.asList(a));
 		
 	}
 
