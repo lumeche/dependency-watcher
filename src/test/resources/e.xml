@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	
+	<groupId>com.nuance.mobility</groupId>
+	<artifactId>e</artifactId>
+	<version>1</version>
+	
+	<scm>
+		<connection>e</connection>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>a</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		
+	</dependencies>
+
+</project>

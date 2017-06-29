@@ -8,21 +8,28 @@ import org.springframework.stereotype.Service;
 
 import com.nuance.mobility.dependencywatcher.data.DependencyRepository;
 import com.nuance.mobility.dependencywatcher.data.IArtifactFactory;
+import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
+import com.nuance.mobility.dependencywatcher.exceptions.UpdatingDependenciesException;
 import com.nuance.mobility.dependencywatcher.data.Artifact;;
 
 @Service
 public class DependencyService {
 	@Autowired
 	private DependencyRepository dependencyRepository;
-	
+
 	@Autowired
 	private IArtifactFactory artifactFactory;
-	
-	public void updateDependencies(String pom){
-		throw new NotImplementedException("");
+
+	public void updateDependencies(String pom) throws UpdatingDependenciesException {
+		try {
+			Artifact artifact = artifactFactory.getArtifact(pom);
+			List<Artifact> dependencies = artifactFactory.getDependencies(pom);
+		} catch (PomParsingException e) {
+			throw new UpdatingDependenciesException(e);
+		}
 	}
-	
-	public List<Artifact> getsWhoDependsOnArtifact(Artifact artifact){
+
+	public List<Artifact> getsWhoDependsOnArtifact(Artifact artifact) {
 		return null;
 	}
 
@@ -33,6 +40,5 @@ public class DependencyService {
 	void setArtifactFactory(IArtifactFactory artifactFactory) {
 		this.artifactFactory = artifactFactory;
 	}
-	
-	
+
 }
