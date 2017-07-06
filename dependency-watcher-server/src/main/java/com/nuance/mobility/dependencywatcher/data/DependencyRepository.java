@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Predicate;
 
-import org.assertj.core.util.Lists;
+import org.apache.commons.collections.ListUtils;
 import org.springframework.stereotype.Component;
 
 
@@ -22,7 +22,7 @@ public class DependencyRepository {
 	}
 	
 	public List<Artifact> getArtifactDependencies(Artifact artifact){
-		return new ArrayList<Artifact>(repository.getOrDefault(artifact, Lists.emptyList()));
+		return new ArrayList<Artifact>(repository.getOrDefault(artifact, ListUtils.EMPTY_LIST));
 	}
 	
 	public void updateDependency(Artifact artifact,List<Artifact> dependencies){
