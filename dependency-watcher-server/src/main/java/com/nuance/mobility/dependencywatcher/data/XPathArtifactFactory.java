@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+import com.nuance.mobility.dependencywatcher.artifact.IArtifactFactory;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 
 @Controller

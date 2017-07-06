@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nuance.mobility.dependencywatcher.data.Artifact;
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+import com.nuance.mobility.dependencywatcher.artifact.IArtifactFactory;
 import com.nuance.mobility.dependencywatcher.data.DependencyRepository;
-import com.nuance.mobility.dependencywatcher.data.IArtifactFactory;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 import com.nuance.mobility.dependencywatcher.exceptions.UpdatingDependenciesException;;
 

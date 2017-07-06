@@ -1,4 +1,4 @@
-package com.nuance.mobility.dependencywatcher.data;
+package com.nuance.mobility.dependencywatcher.artifact;
 
 public class Artifact {
 	private String groupId="";

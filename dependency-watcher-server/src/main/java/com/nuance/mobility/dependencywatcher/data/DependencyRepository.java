@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 import org.apache.commons.collections.ListUtils;
 import org.springframework.stereotype.Component;
 
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+
 
 //TODO: Make sure that this class is thread safe
 @Component

@@ -1,4 +1,4 @@
-package com.nuance.mobility.dependencywatcher.data;
+package com.nuance.mobility.dependencywatcher.artifact;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -11,6 +11,9 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+import com.nuance.mobility.dependencywatcher.data.DependencyRepository;
 
 public class DependencyRepositoryTest {
 

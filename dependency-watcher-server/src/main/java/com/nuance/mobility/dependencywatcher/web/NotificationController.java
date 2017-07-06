@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nuance.mobility.dependencywatcher.data.Artifact;
-import com.nuance.mobility.dependencywatcher.data.IArtifactFactory;
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+import com.nuance.mobility.dependencywatcher.artifact.IArtifactFactory;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 import com.nuance.mobility.dependencywatcher.exceptions.UpdatingDependenciesException;
 import com.nuance.mobility.dependencywatcher.service.DependencyService;

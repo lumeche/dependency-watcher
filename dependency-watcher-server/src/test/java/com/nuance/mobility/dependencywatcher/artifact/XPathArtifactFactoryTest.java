@@ -1,4 +1,4 @@
-package com.nuance.mobility.dependencywatcher.data;
+package com.nuance.mobility.dependencywatcher.artifact;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -14,6 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
+import com.nuance.mobility.dependencywatcher.artifact.Artifact;
+import com.nuance.mobility.dependencywatcher.data.XPathArtifactFactory;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 
 public class XPathArtifactFactoryTest {

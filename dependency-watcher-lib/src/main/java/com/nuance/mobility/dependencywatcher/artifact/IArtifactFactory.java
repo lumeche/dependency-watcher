@@ -1,4 +1,4 @@
-package com.nuance.mobility.dependencywatcher.data;
+package com.nuance.mobility.dependencywatcher.artifact;
 
 import java.util.List;
 
