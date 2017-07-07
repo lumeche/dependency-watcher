@@ -1,7 +1,7 @@
 package com.nuance.mobility.git.lab.GitLabDependencyLauncher;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +13,6 @@ import org.gitlab.api.models.GitlabProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import com.nuance.mobility.dependencywatcher.artifact.Artifact;
@@ -21,7 +20,6 @@ import com.nuance.mobility.dependencywatcher.exceptions.DependencyLauncherExcept
 import com.nuance.mobility.dependencywatcher.interfaces.IDependencyLauncher;
 
 @Component
-
 public class GitLabDependencyLauncher implements IDependencyLauncher {
 
 	private Logger logger = LoggerFactory.getLogger(GitLabDependencyLauncher.class);;
@@ -53,7 +51,7 @@ public class GitLabDependencyLauncher implements IDependencyLauncher {
 	}
 
 	@Override
-	public void launchDependency(List<Artifact> dependencies) throws DependencyLauncherException {
+	public void launchDependency(Collection<Artifact> dependencies) throws DependencyLauncherException {
 		for (Artifact artifact : dependencies) {
 			launchBuild(artifact);
 		}
@@ -65,7 +63,6 @@ public class GitLabDependencyLauncher implements IDependencyLauncher {
 	private void launchBuild(Artifact dependency) throws DependencyLauncherException {
 		Matcher matcher = pattern.matcher(dependency.getScm());
 		if (!matcher.matches()) {
-			System.out.println(matcher.groupCount());
 			String message = String.format("The SCM field [%s] in the artifact %s.%s is not valid", dependency.getScm(),
 					dependency.getGroupId(), dependency.getId());
 			logger.error(message);
@@ -77,6 +74,8 @@ public class GitLabDependencyLauncher implements IDependencyLauncher {
 
 		try {
 			GitlabProject project = api.getProject(namespace, projectName);
+			
+			//TODO: Find a way to launch on several branches and not only in the default one
 			String requestPath = String.format("/projects/%s/pipeline?ref=%s", project.getId(),
 					project.getDefaultBranch());
 			GitlabBuild build = api.dispatch().to(requestPath, GitlabBuild.class);
@@ -102,8 +101,9 @@ public class GitLabDependencyLauncher implements IDependencyLauncher {
 		this.gitProjectInformationRegex = gitProjectInformationRegex;
 	}
 
-	public void setPattern(Pattern pattern) {
-		this.pattern = pattern;
+	
+	void setApi(GitlabAPI api) {
+		this.api = api;
 	}
 	
 	

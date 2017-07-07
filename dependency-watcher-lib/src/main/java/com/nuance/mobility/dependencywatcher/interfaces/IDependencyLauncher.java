@@ -1,5 +1,6 @@
 package com.nuance.mobility.dependencywatcher.interfaces;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.nuance.mobility.dependencywatcher.artifact.Artifact;
@@ -7,5 +8,5 @@ import com.nuance.mobility.dependencywatcher.exceptions.DependencyLauncherExcept
 
 public interface IDependencyLauncher {
 
-	void launchDependency(List<Artifact> artifactsToNotify) throws DependencyLauncherException;
+	void launchDependency(Collection<Artifact> artifactsToNotify) throws DependencyLauncherException;
 }
