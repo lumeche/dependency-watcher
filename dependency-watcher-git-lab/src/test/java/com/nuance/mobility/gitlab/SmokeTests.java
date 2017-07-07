@@ -21,6 +21,7 @@ public class SmokeTests {
 	}
 
 	@Test
+	@Ignore
 	public void test() throws IOException {
 		String projectPath = "git@git.labs.nuance.com:mobility-ncs-components/location-language-metadata-service.git";
 		Pattern pattern = Pattern.compile("^.*:([\\w_-]*)\\/([\\w_-]*).git$");

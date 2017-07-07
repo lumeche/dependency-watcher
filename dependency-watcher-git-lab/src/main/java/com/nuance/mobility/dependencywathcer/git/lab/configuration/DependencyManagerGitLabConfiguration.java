@@ -1,10 +1,10 @@
-package com.nuance.mobility.git.lab.configuration;
+package com.nuance.mobility.dependencywathcer.git.lab.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.nuance.mobility.dependencywatcher.git.lab.GitLabDependencyLauncher;
 import com.nuance.mobility.dependencywatcher.interfaces.IDependencyLauncher;
-import com.nuance.mobility.git.lab.GitLabDependencyLauncher.GitLabDependencyLauncher;
 
 
 @Configuration

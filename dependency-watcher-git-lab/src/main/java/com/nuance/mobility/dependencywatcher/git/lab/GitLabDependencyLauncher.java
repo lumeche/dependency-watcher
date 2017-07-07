@@ -1,4 +1,4 @@
-package com.nuance.mobility.git.lab.GitLabDependencyLauncher;
+package com.nuance.mobility.dependencywatcher.git.lab;
 
 import java.io.IOException;
 import java.util.Collection;

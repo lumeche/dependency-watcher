@@ -1,4 +1,4 @@
-package com.nuance.mobility.git.lab.GitLabDependencyLauncher;
+package com.nuance.mobility.dependencywatcher.git.lab;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import com.nuance.mobility.dependencywatcher.artifact.Artifact;
 import com.nuance.mobility.dependencywatcher.exceptions.DependencyLauncherException;
+import com.nuance.mobility.dependencywatcher.git.lab.GitLabDependencyLauncher;
 
 
 public class GitLabDependencyLauncherTest {

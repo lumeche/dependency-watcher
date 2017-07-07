@@ -32,7 +32,6 @@ public class DependencyRepository {
 	}
 	
 	public List<Artifact> getArtifactsThatDependsOn(final Artifact dependency){
-		
 		Object[] ret = repository.entrySet().parallelStream().filter(new Predicate<Map.Entry<Artifact, List<Artifact>>>() {
 			@Override
 			public boolean test(Map.Entry<Artifact, List<Artifact>> t) {

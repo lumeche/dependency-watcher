@@ -14,6 +14,7 @@
 		<module>../</module>
 		<module>../dependency-watcher-lib</module>
 		<module>../dependency-watcher-git-lab</module>
+		<module>../dependency-watcher-artifactory</module>
 		<module>../dependency-watcher-server</module>
 	</modules>
 
