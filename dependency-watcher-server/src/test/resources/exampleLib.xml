@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.nuance.mobility.toolkit</groupId>
+	<artifactId>alarm-spring-boot-starter</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>alarm-spring-boot-starter</name>
+	<description>Alarm library</description>
+
+	<parent>
+		<groupId>com.nuance.mobility.toolkit</groupId>
+		<artifactId>mobility-toolkit-parent-library</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<scm>
+		<connection>git@git.labs.nuance.com:mobility-ncs-foundation/mobility-toolkit.git</connection>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>alarm-sender</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>alarm-catalog</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>alarm-spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>log-alarm-spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>http-alarm-spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nuance.mobility.toolkit</groupId>
+			<artifactId>application-info-spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
