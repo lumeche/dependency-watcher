@@ -2,6 +2,8 @@ package com.nuance.mobility.dependencywatcher.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ import com.nuance.mobility.dependencywatcher.exceptions.UpdatingDependenciesExce
 
 @Service
 public class DependencyService {
+
+	private static Logger logger = LoggerFactory.getLogger(DependencyService.class);
+	
 	@Autowired
 	private DependencyRepository dependencyRepository;
 
@@ -22,7 +27,10 @@ public class DependencyService {
 	public Artifact updateDependencies(String pom) throws UpdatingDependenciesException {
 		try {
 			Artifact artifact = artifactFactory.getArtifact(pom);
-			List<Artifact> dependencies = artifactFactory.getDependencies(pom);
+			List<Artifact> dependencies = artifactFactory.getDependencies(artifact);
+			logger.info("Dependencies  of {}",artifact.toString());
+			logger.info("{}",dependencies);
+			
 			dependencyRepository.updateDependency(artifact, dependencies);
 			return artifact;
 		} catch (PomParsingException e) {

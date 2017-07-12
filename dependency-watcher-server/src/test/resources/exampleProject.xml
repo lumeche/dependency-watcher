@@ -1,195 +1,52 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.nuance.mobility.ncs</groupId>
-	<artifactId>location-language-metadata-service</artifactId>
-	<name>location-language-metadata-service</name>
-	<description>Nuance Cloud Service location language metadata</description>
-	<version>1.0.1-SNAPSHOT</version>
+	<artifactId>configuration-server</artifactId>
+	<name>configuration-server</name>
+	<description>NCS Configuration Server</description>
 
 	<packaging>jar</packaging>
 
-
-	<scm>
-		<connection>git@git.labs.nuance.com:mobility-ncs-components/location-language-metadata-service.git</connection>
-	</scm>
 	<parent>
 		<groupId>com.nuance.mobility.toolkit</groupId>
 		<artifactId>mobility-toolkit-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-
+	<scm>
+		<connection>git@git.labs.nuance.com:mobility-ncs-components/configuration-server.git</connection>
+	</scm>
 	<dependencies>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-monitor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.nuance.mobility.toolkit</groupId>
 			<artifactId>alarm-spring-boot-starter</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.nuance.mobility.toolkit</groupId>
 			<artifactId>graceful-shutdown-spring-boot-autoconfigure</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
-			<version>1.0.4.RELEASE</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.nuance.mobility.ncs</groupId>
-			<artifactId>location-language-metadata-api</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.nuance.mobility.toolkit</groupId>
-			<artifactId>metrics-spring-boot-starter</artifactId>
-		</dependency>
-
-		<!--Integration/Function Test dependencies -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>3.0.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>3.0.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>spring-mock-mvc</artifactId>
-			<version>3.0.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.fge</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>2.2.6</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!--end of Integration/Function Test dependencies -->
-
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
-				<version>1.0.4.RELEASE</version>
-				<extensions>true</extensions>
-				<configuration>
-					<testMode>EXPLICIT</testMode>
-					<baseClassForTests>com.nuance.mobility.llm.LocationBootApplicationTest</baseClassForTests>
-				</configuration>
-			</plugin>
-
-			<!-- Integration/Function Test plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>add-test-resource</id>
-						<goals>
-							<goal>add-test-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>${project.basedir}\src\it\resources</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.19.1</version>
-				<configuration>
-					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-					<outputName>llms-integration-test-results</outputName>
-				</configuration>
-			</plugin>
-			<!--end of Integration/Function Test plugin -->
-
-		</plugins>
-	</build>
 </project>
-

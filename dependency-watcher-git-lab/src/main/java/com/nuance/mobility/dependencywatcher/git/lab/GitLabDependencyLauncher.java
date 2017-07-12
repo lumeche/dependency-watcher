@@ -19,7 +19,6 @@ import com.nuance.mobility.dependencywatcher.artifact.Artifact;
 import com.nuance.mobility.dependencywatcher.exceptions.DependencyLauncherException;
 import com.nuance.mobility.dependencywatcher.interfaces.IDependencyLauncher;
 
-@Component
 public class GitLabDependencyLauncher implements IDependencyLauncher {
 
 	private Logger logger = LoggerFactory.getLogger(GitLabDependencyLauncher.class);;

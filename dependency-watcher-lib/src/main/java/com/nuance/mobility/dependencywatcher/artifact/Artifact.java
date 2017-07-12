@@ -26,7 +26,7 @@ public class Artifact {
 		this.scm = scm;
 	}
 
-	Artifact(String id){
+	public Artifact(String id){
 		this.id=id;
 	}
 	public String getGroupId() {

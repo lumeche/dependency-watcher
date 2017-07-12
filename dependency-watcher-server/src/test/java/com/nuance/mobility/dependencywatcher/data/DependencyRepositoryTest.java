@@ -1,4 +1,4 @@
-package com.nuance.mobility.dependencywatcher.artifact;
+package com.nuance.mobility.dependencywatcher.data;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.containsInAnyOrder;
