@@ -5,20 +5,15 @@ import static java.util.Collections.singletonList;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
-import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.repository.Authentication;
 import org.eclipse.aether.repository.RemoteRepository;
@@ -26,7 +21,6 @@ import org.eclipse.aether.repository.RemoteRepository.Builder;
 import org.eclipse.aether.resolution.ArtifactDescriptorException;
 import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 import org.eclipse.aether.resolution.ArtifactDescriptorResult;
-import org.eclipse.aether.transfer.TransferEvent;
 import org.eclipse.aether.util.repository.AuthenticationBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +30,6 @@ import org.springframework.stereotype.Component;
 
 import com.nuance.mobility.dependencywatcher.artifact.Artifact;
 import com.nuance.mobility.dependencywatcher.artifact.IArtifactFactory;
-import com.nuance.mobility.dependencywatcher.data.maven.ConsoleTransferListener;
 import com.nuance.mobility.dependencywatcher.exceptions.PomParsingException;
 
 
