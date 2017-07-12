@@ -33,7 +33,8 @@ public class NotificationController {
 	public String updateDependency(@RequestBody String pom) throws PomParsingException, UpdatingDependenciesException{
 		logger.info("POM received {}", pom);
 		
-		Artifact artifact = dependencyService.updateDependencies(pom);		
+		Artifact artifact = dependencyService.updateDependencies(pom);
+		
 		notificationService.notifyDependenciesOf(artifact);
 
 		return null;

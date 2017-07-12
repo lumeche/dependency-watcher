@@ -11,7 +11,7 @@ import com.nuance.mobility.dependencywatcher.interfaces.IDependencyLauncher;
 public class DependencyManagerGitLabConfiguration {
 
 	@Bean
-	public IDependencyLauncher pbuildGitLabDependencyLauncher(){
+	public IDependencyLauncher buildGitLabDependencyLauncher(){
 		return new GitLabDependencyLauncher();
 	}
 }

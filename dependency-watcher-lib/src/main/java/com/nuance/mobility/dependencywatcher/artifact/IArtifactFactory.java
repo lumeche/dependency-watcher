@@ -8,6 +8,6 @@ public interface IArtifactFactory {
 
 	Artifact getArtifact(String pom) throws PomParsingException;
 
-	List<Artifact> getDependencies(String pom) throws PomParsingException;
+	List<Artifact> getDependencies(Artifact pom) throws PomParsingException;
 
 }

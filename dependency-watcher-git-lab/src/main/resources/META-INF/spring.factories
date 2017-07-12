@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.nuance.mobility.git.lab.configuration.DependencyManagerGitLabConfiguration
+com.nuance.mobility.dependencywathcer.git.lab.configuration.DependencyManagerGitLabConfiguration
