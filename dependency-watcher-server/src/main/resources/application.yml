@@ -21,8 +21,8 @@ artifactory:
   host: 10.3.41.66
   port: 8081
   base_url: /artifactory/api/search/
-  repo: libs-snapshots-local
+  repo: repo
   dependency:
-    propertyname: trigger
+    propertyname: autoupdate
     propertyvalue: true
   
