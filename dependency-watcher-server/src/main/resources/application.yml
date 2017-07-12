@@ -8,6 +8,7 @@ git:
   service.account.token: pWtB2gbhv72TmHo7fnK1
   url: "https://git.labs.nuance.com"
 
+
 mvn:
   repo:
     protocol: http
@@ -16,3 +17,9 @@ mvn:
     url: /artifactory/repo/
     username: admin
     password: password
+  
+artifactory:
+  dependency:
+    propertyname: trigger
+    propertyvalue: true
+
