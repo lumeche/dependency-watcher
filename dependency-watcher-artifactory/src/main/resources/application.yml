@@ -1,5 +1,9 @@
 artifactory:
-  host: 192.168.99.100
+  host: 10.3.41.66
   port: 8081
   base_url: /artifactory/api/search/
-  repo: example-repo-local
+  repo: libs-snapshots-local
+  dependency:
+    propertyname: trigger
+    propertyvalue: true
+  

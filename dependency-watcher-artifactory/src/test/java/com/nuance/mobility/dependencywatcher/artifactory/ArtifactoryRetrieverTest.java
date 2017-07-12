@@ -2,6 +2,7 @@ package com.nuance.mobility.dependencywatcher.artifactory;
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,16 @@ public class ArtifactoryRetrieverTest {
 	@Autowired
 	private ArtifactoryRetriever artifactoryRetriever;
 	
+	@Ignore
 	@Test
-	public void test() throws MavenRepositoryException {
+	public void exploratoryTest() throws MavenRepositoryException {
     ArrayList<String> pom_files = new ArrayList<String>();
     
 	
     String property_name="trigger";
-    String property_value="false";	
+    String property_value="true";	
 	
-	pom_files=artifactoryRetriever.retrievePoms(property_name,property_value);
+	pom_files=artifactoryRetriever.retrievePomUrls(property_name,property_value);
 	System.out.printf( "searching for %s  and %s ", property_name,property_value);
 	//iterate through list
 	for (int x=0; x<pom_files.size(); x++){

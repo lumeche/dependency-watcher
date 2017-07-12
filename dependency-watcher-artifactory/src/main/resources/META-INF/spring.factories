@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.nuance.mobility.dependencywatcher.artifactory.configuration.ArtifactoryConfiguration

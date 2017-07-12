@@ -8,18 +8,21 @@ git:
   service.account.token: pWtB2gbhv72TmHo7fnK1
   url: "https://git.labs.nuance.com"
 
-
 mvn:
   repo:
     protocol: http
-    hostname: 10.3.41.66
-    port: 8081
+    hostname: ${artifactory.host}
+    port: ${artifactory.port}
     url: /artifactory/repo/
     username: admin
     password: password
   
 artifactory:
+  host: 10.3.41.66
+  port: 8081
+  base_url: /artifactory/api/search/
+  repo: libs-snapshots-local
   dependency:
     propertyname: trigger
     propertyvalue: true
-
+  

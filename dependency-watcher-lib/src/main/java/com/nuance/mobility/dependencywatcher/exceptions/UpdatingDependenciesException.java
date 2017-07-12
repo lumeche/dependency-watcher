@@ -1,6 +1,8 @@
 package com.nuance.mobility.dependencywatcher.exceptions;
 
-public class UpdatingDependenciesException extends Exception {
+public class UpdatingDependenciesException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
 
 	public UpdatingDependenciesException() {
 		super();

@@ -13,7 +13,6 @@ import org.gitlab.api.models.GitlabProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import com.nuance.mobility.dependencywatcher.artifact.Artifact;
 import com.nuance.mobility.dependencywatcher.exceptions.DependencyLauncherException;

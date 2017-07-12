@@ -1,6 +1,6 @@
 package com.nuance.mobility.dependencywatcher.exceptions;
 
-public class MavenRepositoryException extends Exception{
+public class MavenRepositoryException extends RuntimeException{
 
 	public MavenRepositoryException() {
 		super();
