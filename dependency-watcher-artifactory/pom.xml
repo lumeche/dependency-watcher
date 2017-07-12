@@ -33,6 +33,7 @@
 			<artifactId>dependency-watcher-git-lab</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
 	</dependencies>
 
 </project>

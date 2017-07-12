@@ -7,3 +7,8 @@ git:
   project.information.regex: "^.*:(.*)/([\\w_-]*).git$"
   service.account.token: pWtB2gbhv72TmHo7fnK1
   url: "https://git.labs.nuance.com"
+  
+artifactory:
+  dependency:
+    propertyname: trigger
+    propertyvalue: true
