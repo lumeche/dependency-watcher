@@ -63,11 +63,7 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>com.nuance.mobility</groupId>
-			<artifactId>dependency-watcher-git-lab</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 
 	</dependencies>
 
