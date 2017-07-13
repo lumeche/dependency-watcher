@@ -4,10 +4,12 @@ server:
   context-path: /rest/v1
 
 git: 
-  project.information.regex: "^.*:(.*)/([\\w_-]*).git$"
+  project:
+    information.regex: "^.*:(.*)/([\\w_-]*).git$"
+    branches.regex: master.*
   service.account.token: pWtB2gbhv72TmHo7fnK1
   url: "https://git.labs.nuance.com"
-
+  
 mvn:
   repo:
     protocol: http
